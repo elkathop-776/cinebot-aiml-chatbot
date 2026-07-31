@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- Greeting -->
+ <category>
+    <pattern><set>greetings</set></pattern>
+     <template>
+        <random>
+           <li>Hello! I am CineBot!</li>
+           <li>Hi there! I'm CineBot! </li>
+           <li>Greetings! My name is CineBot! </li>
+        </random>
+            <br/>How can I help you?
+                <button>
+                    <text>Show Schedule</text>
+                    <postback>SCHEDULE</postback>
+                </button>
+                <button>
+                    <text>Book Tickets</text>
+                    <postback>BOOKING</postback>
+                </button>
+                <button>
+                    <text>Ticket Prices</text>
+                    <postback>PRICES</postback>
+                </button>
+     </template>
+ </category>
+  
+<!-- Show Weekly Schedule Select -->
+ <category>
+    <pattern>SCHEDULE</pattern>
+     <template>
+        <think><set name="topic">SCHEDULE</set></think>
+            <srai>SHOW SCHEDULE</srai>
+     </template>
+ </category>
+ 
+<!-- Book Tickets Select -->
+ <category>
+    <pattern>BOOKING</pattern>
+     <template>
+        <think><set name="topic">BOOKING</set></think>
+        Which movie would you like to book tickets for?
+     </template>
+ </category>
+
+<!-- Ticket Prices Select -->
+ <category>
+  <pattern>PRICES</pattern>
+  <template>
+     Ticket Prices:<br/><br/>
+    
+    - Adult: 6€<br/>
+    - Child: 2€<br/>
+    - Reduced (students/seniors): 3€<br/><br/>
+    
+    For more details, you can contact support or return to the main menu.
+    <br/><br/>
+    
+    <button>
+      <text>Contact Support</text>
+      <postback>HUMAN SUPPORT</postback>
+    </button>
+    
+    <button>
+      <text>Main Menu</text>
+      <postback>HI</postback>
+    </button>
+  </template>
+</category>
+
+<!-- General Question 1 -->
+ <category>
+    <pattern>WHAT MOVIES *</pattern>
+     <template>
+        <think><set name="topic">unknown</set></think>
+        We are currently showing:<br/>
+        Nosferatu<br/>
+        Parasite<br/>
+        The Boy and the Heron<br/>
+        Dune Part Two<br/><br/>
+        Would you like to see the schedule or book tickets?
+        <button>
+            <text>Show Schedule</text>
+            <postback>SCHEDULE</postback>
+        </button>
+        <button>
+            <text>Book Tickets</text>
+            <postback>BOOKING</postback>
+        </button>
+     </template>
+ </category>
+
+<!-- General Question 2 -->
+ <category>
+    <pattern>WHEN DOES * PLAY</pattern>
+     <template>
+        <think><set name="topic">unknown</set></think> I don't have the specific times for <star/>, 
+        but you can check our current schedule:
+        <button>
+            <text>Show Schedule</text>
+            <postback>SCHEDULE</postback>
+        </button>
+     </template>
+ </category>
+
+<!-- General Question 3 -->
+ <category>
+    <pattern><set>tickets</set></pattern>
+     <template>
+         <srai>PRICES</srai>
+     </template>
+ </category>
+
+<category>
+  <pattern>TICKET PRICES</pattern>
+  <template><srai>PRICES</srai></template>
+</category>
+
+<!-- Gratitude & Goodbyes -->
+ <category>
+    <pattern><set>gratitude</set></pattern>
+     <template>
+        <random>
+           <li>You are very welcome!</li>
+           <li>Happy to assist you!</li>
+           <li>My pleasure!</li>
+        </random>
+            <br/>Is there anything else I can help you with?
+                <button>
+                    <text>Yes!</text>
+                    <postback>YES</postback>
+                </button>
+                <button>
+                    <text>No.</text>
+                    <postback>NO</postback>
+                </button>
+     </template>
+ </category>
+
+ <category>
+    <pattern><set>goodbyes</set></pattern>
+     <template>
+        <random>
+           <li>Goodbye!</li>
+           <li>Bye-bye!</li>
+           <li>Take care!</li>
+        </random>
+            <br/>See you soon!
+     </template>
+ </category>
+  
+<!-- Continue Buttons -->
+ <category>
+    <pattern>YES</pattern>
+     <template>
+        <think><set name="topic">unknown</set></think>
+        How can I help you?<br/>
+        <button>
+             <text>Show Weekly Schedule</text>
+             <postback>SCHEDULE</postback>
+        </button>
+        <button>
+            <text>Book Tickets</text>
+            <postback>BOOKING</postback>
+        </button>
+     </template>
+ </category>
+
+ <category>
+    <pattern>NO</pattern>
+     <template>
+        Goodbye!<br/>
+        Thank you for using CineBot!
+     </template>
+ </category>
+
+<!-- Reset Cinebot -->
+ <category>
+    <pattern>RESET</pattern>
+     <template>
+        <think><set name="topic">unknown</set></think>
+            <srai>GREETINGS</srai> </template>
+ </category>
+
+<!-- Cancel Process -->
+ <category>
+    <pattern><set>cancel</set></pattern>
+     <template>
+        <think>
+            <set name="topic">unknown</set>
+            <set name="movie_choice">none</set>
+            <set name="ticket_count">none</set>
+            <set name="time_choice">none</set>
+            <set name="special_offer">none</set>
+        </think>
+        No problem! I have cancelled your current process. How can I help you now?
+            <button>
+                <text>Main Menu</text>
+                <postback>YES</postback>
+            </button>
+            <button>
+                <text>Exit</text>
+                <postback>NO</postback>
+            </button>
+     </template>
+ </category>
+ 
+ <!-- Contact Support -->
+ <category>
+  <pattern>HUMAN SUPPORT</pattern>
+  <template>
+    You will now be connected to a human agent.
+    Please wait...
+  </template>
+</category>
+
+<!-- Global Fallback -->
+ <category>
+    <pattern>*</pattern>
+     <template>
+        Sorry, I didn’t understand that.<br/><br/>
+        You can: <br/>
+        - try again <br/>
+        - or contact support
+        <br/>
+            <button>
+                 <text>Try Again</text>
+                 <postback>YES</postback>
+            </button>
+            <button>
+                <text>Contact Support</text>
+                <postback>HUMAN SUPPORT</postback>
+            </button>
+     </template>
+ </category>
+</aiml>

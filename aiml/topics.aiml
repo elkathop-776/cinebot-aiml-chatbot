@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="SCHEDULE">
+
+<!-- Default Schedule Display -->
+ <category>
+    <pattern>SHOW SCHEDULE</pattern>
+     <template>
+        <think><set name="topic">SCHEDULE</set></think>
+        Here are the movies showing this week.<br/><br/>
+        You can click a movie to see showtimes or book tickets.
+            <br/><br/>
+                <button>
+                    <text>Nosferatu</text>
+                    <postback>SHOW NOSFERATU</postback>
+                </button>
+                <button>
+                    <text>Parasite</text>
+                    <postback>SHOW PARASITE</postback>
+                </button>
+                <button>
+                    <text>The Boy and the Heron</text>
+                    <postback>SHOW THE BOY AND THE HERON</postback>
+                </button>
+                <button>
+                    <text>Dune Part Two</text>
+                    <postback>SHOW DUNE PART TWO</postback>
+                </button>
+                <button>
+                    <text>Book Tickets</text>
+                    <postback>BOOKING</postback>
+                </button>
+     </template>
+ </category>
+    
+<!-- Movie-specific Schedule Lookup -->
+ <category>
+    <pattern>SHOW NOSFERATU</pattern>
+     <template>
+        Nosferatu (2024): A gothic tale of obsession between a haunted young woman and a terrifying vampire.<br/>
+        Showtimes: <map name="movietimes">nosferatu</map><br/>
+        
+        For more information and the official trailer, visit:
+        <link>
+            <text>IMDb - Nosferatu</text>
+            <url>https://www.imdb.com/title/tt5040012/</url>
+        </link>
+        Would you like to book tickets for Nosferatu?
+            <button>
+                <text>Book Nosferatu</text>
+                <postback>SELECT NOSFERATU</postback> 
+            </button>
+            <button>
+                <text>Show Schedule</text>
+                <postback>SCHEDULE</postback>
+            </button>
+     </template>
+ </category>
+ 
+ <category>
+    <pattern>SHOW PARASITE</pattern>
+     <template>
+        Parasite (2019): A poor family schemes to become employed by a wealthy family by infiltrating their household.<br/>
+        Showtimes: <map name="movietimes">parasite</map><br/>
+        
+        For more information and the official trailer, visit:
+        <link>
+            <text>IMDb - Parasite</text>
+            <url>https://www.imdb.com/title/tt6751668/</url>
+        </link>
+        Would you like to book tickets for Parasite?
+            <button>
+                <text>Book Parasite</text>
+                <postback>SELECT PARASITE</postback>
+            </button>
+            <button>
+                <text>Show Schedule</text>
+                <postback>SCHEDULE</postback>
+            </button>
+     </template>
+ </category>
+
+ <category>
+    <pattern>SHOW THE BOY AND THE HERON</pattern>
+     <template>
+        The Boy and the Heron (2023): In the wake of his mother's death and his father's remarriage, 
+        a headstrong boy ventures into a dreamlike world shared by the living and the dead in search of his missing stepmother.<br/>
+        Showtimes: <map name="movietimes">the boy and the heron</map><br/>
+        
+        For more information and the official trailer, visit:
+        <link>
+            <text>IMDb - The Boy and the Heron</text>
+            <url>https://www.imdb.com/title/tt6587046/</url>
+        </link>
+        Would you like to book tickets for The Boy and the Heron?
+            <button>
+                <text>Book The Boy and the Heron</text>
+                <postback>SELECT THE BOY AND THE HERON</postback>
+            </button>
+            <button>
+                <text>Show Schedule</text>
+                <postback>SCHEDULE</postback>
+            </button>
+     </template>
+ </category>
+
+ <category>
+    <pattern>SHOW DUNE PART TWO</pattern>
+     <template>
+        Dune Part Two (2024): Paul Atreides unites with the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he endeavors to prevent a terrible future.<br/>
+        Showtimes: <map name="movietimes">dune part two</map><br/>
+        
+        For more information and the official trailer, visit:
+        <link>
+            <text>IMDb - Dune Part Two</text>
+            <url>https://www.imdb.com/title/tt15239678/</url>
+        </link>
+        Would you like to book tickets for Dune Part Two?
+            <button>
+                <text>Book Dune Part Two</text>
+                <postback>SELECT DUNE PART TWO</postback>
+            </button>
+            <button>
+                <text>Show Schedule</text>
+                <postback>SCHEDULE</postback>
+            </button>
+     </template>
+ </category>
+    
+<!-- Fallback Schedule -->    
+ <category>
+    <pattern>*</pattern>
+     <template>
+        I'm sorry, I didn't quite get that. 
+        <br/>
+        If you want to see the movie details again, please click the button below. 
+        <br/>
+        If you want to go back to the start, just type "RESET".
+        
+            <button>
+                <text>Show Schedule</text>
+                <postback>SCHEDULE</postback>
+            </button>
+     </template>
+ </category>
+   
+<!-- Changing to Booking Topic for Each Movie -->
+ <category>
+    <pattern>SELECT NOSFERATU</pattern>
+     <template>
+        <think>
+            <set name="topic">BOOKING</set> 
+            <set name="movie_choice">Nosferatu</set> 
+        </think>
+        Selected <get name="movie_choice"/>. What time would you like to attend?
+     </template>
+ </category> 
+    
+ <category>
+    <pattern>SELECT PARASITE</pattern>
+     <template>
+        <think>
+            <set name="topic">BOOKING</set> 
+            <set name="movie_choice">Parasite</set> 
+        </think>
+        Selected <get name="movie_choice"/>. What time would you like to attend?
+     </template>
+ </category>
+    
+ <category>
+    <pattern>SELECT THE BOY AND THE HERON</pattern>
+     <template>
+        <think>
+            <set name="topic">BOOKING</set> 
+            <set name="movie_choice">The Boy and the Heron</set> 
+        </think>
+        Selected <get name="movie_choice"/>. What time would you like to attend?
+     </template>
+ </category>
+    
+ <category>
+    <pattern>SELECT DUNE PART TWO</pattern>
+     <template>
+        <think>
+            <set name="topic">BOOKING</set> 
+            <set name="movie_choice">Dune Part Two</set> 
+        </think>
+        Selected <get name="movie_choice"/>. What time would you like to attend?
+     </template>
+ </category>
+
+</topic>
+
+<topic name="BOOKING">
+<!-- 1: Choose Movie -->
+ <category>
+    <pattern>NOSFERATU</pattern>
+     <template>
+        <think>
+            <set name="movie_choice">Nosferatu</set>
+        </think>
+            <get name="movie_choice"/> shows at <map name="movietimes">nosferatu</map>.<br/>
+        What time would you like to attend?
+     </template>
+ </category>
+
+ <category>
+    <pattern>PARASITE</pattern>
+     <template>
+        <think>
+            <set name="movie_choice">Parasite</set>
+        </think>
+            <get name="movie_choice"/> shows at <map name="movietimes">parasite</map>.<br/>
+        What time would you like to attend?    
+     </template>
+ </category>
+  
+ <category>
+    <pattern>THE BOY AND THE HERON</pattern>
+     <template>
+        <think>
+            <set name="movie_choice">The Boy and the Heron</set>
+        </think>
+            <get name="movie_choice"/> shows at <map name="movietimes">the boy and the heron</map>.<br/>
+        What time would you like to attend?    
+     </template>
+ </category>
+
+ <category>
+    <pattern>DUNE PART TWO</pattern>
+     <template>
+        <think>
+            <set name="movie_choice">Dune Part Two</set>
+        </think>
+            <get name="movie_choice"/> shows at <map name="movietimes">dune part two</map>.<br/>
+        What time would you like to attend?    
+     </template>
+ </category>
+   
+ <category>
+    <pattern>*</pattern>
+        <that>WHICH MOVIE WOULD YOU LIKE TO BOOK TICKETS FOR</that>
+            <template>
+            Sorry, I didn’t recognize that movie. 
+            Which movie would you like to book tickets for?
+            </template>
+ </category>
+
+<!-- 2: Choose Time -->
+ <category>
+    <pattern>5PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">5pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+ <category>
+    <pattern>6PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">6pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+ <category>
+    <pattern>7PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">7pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+ <category>
+    <pattern>8PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">8pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+ <category>
+    <pattern>9PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">9pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+ <category>
+    <pattern>10PM</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+                <think><set name="time_choice">10pm</set></think>
+                How many tickets would you like?
+            </template>
+ </category>
+
+<!-- Keeping Time Flow -->
+ <category>
+    <pattern>*</pattern>
+        <that>WHAT TIME WOULD YOU LIKE TO ATTEND</that>
+            <template>
+            Sorry, please choose a valid time like 7pm, 8pm, or 9pm.
+                <br/>What time would you like to attend?
+            </template>
+ </category>
+
+<!-- 3: Ticket Count -->
+ <category>
+    <pattern>*</pattern>
+        <that>HOW MANY TICKETS WOULD YOU LIKE</that>
+            <template>
+                <think>
+                    <set name="ticket_input"><star/></set>
+                </think>
+            <condition name="ticket_input">
+                <!-- VALID NUMBERS -->
+                <li value="1"><think><set name="ticket_count">1</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="2"><think><set name="ticket_count">2</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="3"><think><set name="ticket_count">3</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="4"><think><set name="ticket_count">4</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="5"><think><set name="ticket_count">5</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="6"><think><set name="ticket_count">6</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="7"><think><set name="ticket_count">7</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="8"><think><set name="ticket_count">8</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="9"><think><set name="ticket_count">9</set></think><srai>SHOW OFFERS</srai></li>
+                <li value="10"><think><set name="ticket_count">10</set></think><srai>SHOW OFFERS</srai></li>
+                <!-- INVALID INPUT -->
+                <li>
+                    Sorry, please enter a valid number of tickets (1–10).<br/>
+                    How many tickets would you like?
+                </li>
+            </condition>
+
+            </template>
+ </category>
+
+ <category>
+    <pattern>CONFIRM BOOKING</pattern>
+        <template>
+            <think><set name="topic">unknown</set></think> Reservation Summary:
+                <br/>Movie: <get name="movie_choice"/>
+                <br/>Tickets: <get name="ticket_count"/>
+                <br/>Time: <get name="time_choice"/>
+                <br/><br/>
+        <condition name="special_offer">
+            <li value="none"></li>
+            <li>Offer: <get name="special_offer"/></li>
+        </condition>
+        <br/><br/>
+        Everything is ready! Thank you for using CineBot!
+        <br/>Is there anything else I can help you with?
+            <button>
+                <text>Back to Main Menu</text>
+                <postback>YES</postback>
+            </button>
+            <button>
+                <text>I'm good!</text>
+                <postback>NO</postback>
+            </button>
+        </template>
+ </category>
+
+</topic>
+
+ <category>
+    <pattern>SHOW OFFERS</pattern>
+        <template>
+        Great! Before we finish, would you like to add one of our special offers?
+        <br/><br/>
+        - Movie and Popcorn: 12 Euro
+        <br/>
+        - Family Combo: 25 Euro
+        <br/><br/>
+            <button>
+                <text>Add Popcorn Deal</text>
+                <postback>OFFER POPCORN</postback>
+            </button>
+            <button>
+                <text>Add Family Combo</text>
+                <postback>OFFER FAMILY</postback>
+            </button>
+            <button>
+                <text>No thanks, just tickets</text>
+                <postback>NO OFFER</postback>
+            </button>
+        </template>
+ </category>
+
+ <category>
+    <pattern>OFFER POPCORN</pattern>
+        <template>
+            <think><set name="special_offer">Movie and Popcorn Deal</set></think>
+            Added to your order!
+                <srai>CONFIRM BOOKING</srai>
+        </template>
+ </category>
+
+ <category>
+    <pattern>OFFER FAMILY</pattern>
+        <template>
+            <think><set name="special_offer">Family Combo</set></think>
+            Excellent choice! Added to your order.
+                <srai>CONFIRM BOOKING</srai>
+        </template>
+ </category>
+
+ <category>
+    <pattern>NO OFFER</pattern>
+        <template>
+            <think><set name="special_offer">none</set></think>
+                <srai>CONFIRM BOOKING</srai>
+        </template>
+ </category>
+</aiml>

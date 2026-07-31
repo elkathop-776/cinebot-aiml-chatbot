@@ -1,6 +1,7 @@
 # **Cinebot - AIML Conversational Cinema Assistant**
 
 Cinebot is an **AIML 2.0 (Artificial Intelligence Markup Language)** conversational chatbot designed to streamline cinema customer service. It enables users to explore movie schedules, retrieve showtimes, book tickets, and inquire about ticket pricing through an interactive chat interface.
+
 *Developed for the *Conversational Agents* course at Aristotle University of Thessaloniki*
 
 ## Key Capabilities
